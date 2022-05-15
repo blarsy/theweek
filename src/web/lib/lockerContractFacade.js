@@ -10,6 +10,7 @@ export async function isFacilitator(signer) {
 }
 
 export async function getFacilitators(signer) {
+    console.log('lockerContractAddress ' + lockerContractAddress)
     const contract = new ethers.Contract(lockerContractAddress, lockerAbi, signer)
     const facilitators = await contract.getFacilitatorAddresses()
     return facilitators
