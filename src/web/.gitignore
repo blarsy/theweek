@@ -37,3 +37,10 @@ yarn-error.log*
 # Ipfs / OrbitDb local data
 /ipfs
 /orbitdb
+
+# local env files
+.env*.local
+/logs
+
+# local scripts
+/testscripts

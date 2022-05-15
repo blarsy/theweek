@@ -1,0 +1,5 @@
+# dependencies
+node_modules
+
+# local .secret file (recovery phrase of the account that creates smart contracts with Truffle
+.secret
