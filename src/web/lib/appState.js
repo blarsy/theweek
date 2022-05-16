@@ -1,5 +1,6 @@
 import { createContext, useContext, useState, useEffect } from 'react'
 import { ethers } from 'ethers'
+import { Logger, LogLevel } from '@ethersproject/logger'
 import { Button, Snackbar, Alert } from '@mui/material'
 import { isFacilitator  } from './lockerContractFacade'
 
@@ -17,7 +18,6 @@ export function AppWrapper({ children }) {
         const signer = provider.getSigner()
         const walletAddress = await signer.getAddress()
         localStorage.setItem('walletAddress', walletAddress)
-        console.log('walletAddress ' + walletAddress)
         const signerIsFacilitator = await isFacilitator(signer)
         mergeWithState(state, { 
           walletAddress,
@@ -76,6 +76,7 @@ export function AppWrapper({ children }) {
       ethereum = window.ethereum
       ethereum.on('accountsChanged', tryConnect)
       ethereum.on('chainChanged', tryConnect)
+      Logger.setLogLevel(LogLevel.DEBUG)
     }
   }
 

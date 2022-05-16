@@ -12,9 +12,8 @@ export default function FacilitatorDashboard() {
     const [state] = useAppContext()
 
     useEffect(async () => {
-        setDateFormatter(Intl.DateTimeFormat(window.navigator.languages,  { dateStyle: 'medium', timeStyle: 'short'}))
-
         if(!cohorts) {
+            setDateFormatter(Intl.DateTimeFormat(window.navigator.languages,  { dateStyle: 'medium', timeStyle: 'short'}))
             setCohorts(await getCohorts(state.walletAddress))
         }
     })
