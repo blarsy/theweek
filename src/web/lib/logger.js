@@ -1,9 +1,11 @@
 import { createLogger, config, transports, format } from 'winston'
+import path from 'path'
+
 
 const options = {
   file: {
     level: 'info',
-    filename: './logs/app.log',
+    filename: path.join('./','logs/app.log'),
     handleExceptions: true,
     json: true,
     maxsize: 5242880, // 5MB
