@@ -117,6 +117,31 @@ export default function Admin() {
                     </Box>
                 </Stack>
             </Card>
+            <Card elevation={2} sx={{ padding: '1rem', margin: '1rem' }}>
+                <Stack alignItems="center">
+                    <Typography variant="h4">Client app settings</Typography>
+                    <TableContainer>
+                        <Table>
+                            <TableHead>
+                                <TableRow>
+                                    <TableCell>Key</TableCell>
+                                    <TableCell>Value</TableCell>
+                                </TableRow>
+                            </TableHead>
+                            <TableBody>
+                            <TableRow>
+                                    <TableCell>NEXT_PUBLIC_LOCKER_CONTRACT_ADDRESS</TableCell>
+                                    <TableCell>{process.env.NEXT_PUBLIC_LOCKER_CONTRACT_ADDRESS}</TableCell>
+                                </TableRow>
+                                <TableRow>
+                                    <TableCell>NEXT_PUBLIC_WEBSITE_PUBLIC_URL</TableCell>
+                                    <TableCell>{process.env.NEXT_PUBLIC_WEBSITE_PUBLIC_URL}</TableCell>
+                                </TableRow>
+                            </TableBody>
+                        </Table>
+                    </TableContainer>
+                </Stack>
+            </Card>
         </Stack>)
     }
     return (<Box sx={{ flexGrow: '1', display:'flex', alignItems:'center', flexDirection:'column'}}>
