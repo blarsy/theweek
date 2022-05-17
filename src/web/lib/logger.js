@@ -48,7 +48,7 @@ const logger = createLogger({
     format.json()
   ),
   levels: config.npm.levels,
-  transportsToUse,
+  transports: transportsToUse,
   exitOnError: false
 })
 
