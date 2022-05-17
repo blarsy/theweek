@@ -16,7 +16,7 @@ export default async function handler(req, res) {
                     const cohorts = await dbs.cohorts.query(cohort => organizer.cohorts.includes(cohort._id))
                     res.status(200).json({ ...watchparties[0], organizer, participants: candidateParticipants.length, cohorts })   
                 }
-            }, process.env.IPFS_REPO)
+            })
         } catch(e) {
             logger.error(e)
             res.status(500).json({ error: 'Unexpected error : ' + e })                 

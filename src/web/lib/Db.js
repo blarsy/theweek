@@ -1,5 +1,6 @@
 import { create } from 'ipfs'
 import OrbitDB from 'orbit-db'
+import path from 'path'
 
 // Why this pattern of creating a node - doing operation - immediately closing ?
 // Creating a node makes the process acquire a lock in the form of files in the IPFS folder. This lock
@@ -9,10 +10,10 @@ import OrbitDB from 'orbit-db'
 // which fails because the file-based lock is still active on the node. This is an blocking issue when using 
 // NextJs for development, and this is the only workaround I found (hopefully it won't affect perf too much,
 // in which case I'll have to make some logic to close and recreate a node only when we are in dev)
-export async function executeOnDb(operations, repoPath)  {
+export async function executeOnDb(operations)  {
     const createNode = () => create({
       preload: { enabled: false },
-      repo: repoPath,
+      repo: path.join(__dirname, process.env.IPFS_REPO),
       EXPERIMENTAL: { pubsub: true },
       config: {
         Bootstrap: [],

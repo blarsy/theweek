@@ -29,7 +29,7 @@ export default async function handler(req, res) {
                             })
                             const cid = CID.parse(cidStr)
                             res.status(200).json({ cid })
-                        }, process.env.IPFS_REPO)
+                        })
                     }
                 }
             } catch(e) {
@@ -44,7 +44,7 @@ export default async function handler(req, res) {
                     const now = new Date()
                     const availableCohortsRes = await dbs.cohorts.query(cohort => new Date(cohort.confirmationDeadline) > now)
                     res.status(200).json(availableCohortsRes)
-                }, process.env.IPFS_REPO)
+                })
             } catch(e) {
                 logger.error(e)
                 res.status(500).json({ error: 'Unexpected error : ' + e })

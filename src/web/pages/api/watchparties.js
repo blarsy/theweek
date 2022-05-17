@@ -31,7 +31,7 @@ export default async function handler(req, res) {
                         })
                         const cid = CID.parse(cidStr)
                         res.status(200).json({ cid, slug })
-                    }, process.env.IPFS_REPO)
+                    })
                 }
             }
             catch(e) {

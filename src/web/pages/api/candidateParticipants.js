@@ -23,7 +23,7 @@ export default async function handler(req, res) {
                             dbs.organizers.put(req.body.watchpartySlug, participantId)
                         }
                         res.status(200).json({ _id: participantId })
-                    }, process.env.IPFS_REPO)
+                    })
                 }
             }
             catch(e) {
