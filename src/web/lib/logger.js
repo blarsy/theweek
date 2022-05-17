@@ -1,23 +1,37 @@
 import { createLogger, config, transports, format } from 'winston'
 import path from 'path'
 
-const options = {
-  file: {
-    level: 'info',
-    filename: path.join(__dirname,'logs', 'app.log'),
-    handleExceptions: true,
-    json: true,
-    maxsize: 5242880, // 5MB
-    maxFiles: 5,
-    colorize: false,
-  },
-  console: {
-    level: 'debug',
-    handleExceptions: true,
-    json: false,
-    colorize: true,
-  },
-};
+const env = process.env.NODE_ENV
+let options
+if(env == "development"){
+  options = {
+    file: {
+      level: 'info',
+      filename: path.join(__dirname,'logs', 'app.log'),
+      handleExceptions: true,
+      json: true,
+      maxsize: 5242880, // 5MB
+      maxFiles: 5,
+      colorize: false,
+    },
+    console: {
+      level: 'debug',
+      handleExceptions: true,
+      json: false,
+      colorize: true,
+    },
+  }
+}
+else if (env == "production"){
+  options = {
+    console: {
+      level: 'debug',
+      handleExceptions: true,
+      json: false,
+      colorize: true,
+    },
+  }
+}
 
 const logger = createLogger({
   format: format.combine(
