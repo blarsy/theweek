@@ -27,7 +27,7 @@ if(env == "development"){
     new transports.Console(options.console)
   ]
 }
-else if (env == "production"){
+else {
   options = {
     console: {
       level: 'debug',
