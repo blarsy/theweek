@@ -3,6 +3,7 @@ import path from 'path'
 
 const env = process.env.NODE_ENV
 let options
+let transportsToUse
 if(env == "development"){
   options = {
     file: {
@@ -21,6 +22,10 @@ if(env == "development"){
       colorize: true,
     },
   }
+  transportsToUse = [
+    new transports.File(options.file),
+    new transports.Console(options.console)
+  ]
 }
 else if (env == "production"){
   options = {
@@ -31,6 +36,9 @@ else if (env == "production"){
       colorize: true,
     },
   }
+  transportsToUse = [
+    new transports.Console(options.console)
+  ]
 }
 
 const logger = createLogger({
@@ -40,10 +48,7 @@ const logger = createLogger({
     format.json()
   ),
   levels: config.npm.levels,
-  transports: [
-    new transports.File(options.file),
-    new transports.Console(options.console)
-  ],
+  transportsToUse,
   exitOnError: false
 })
 
